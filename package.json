@@ -1,0 +1,11 @@
+{
+  "name": "frontend-challenge",
+  "version": "1.0.0",
+  "description": "interview challenge by zeraki",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Lawrence Odhiambo",
+  "license": "ISC"
+}
