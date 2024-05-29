@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { Link, Outlet } from 'react-router-dom';
 
-// Styled Components
+// Styles to my components
 // Main container area
 const Container = styled.div`
   display: flex;
@@ -21,7 +21,7 @@ const Sidebar = styled.div`
   flex-direction: column;
   align-items: center;
 `;
-
+// links style
 const SidebarLink = styled(Link)`
   color: white;
   text-decoration: none;
