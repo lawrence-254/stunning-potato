@@ -1,12 +1,11 @@
-// src/pages/Schools.tsx
-import React from 'react';
-import styled from 'styled-components';
+
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import styled from 'styled-components';
+import axios from 'axios';
 
 const SchoolsContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
+  padding: 20px;
 `;
 
 const SchoolCard = styled.div`
@@ -14,21 +13,30 @@ const SchoolCard = styled.div`
   padding: 20px;
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-bottom: 10px;
 `;
 
 const Schools: React.FC = () => {
+  const [schools, setSchools] = useState([]);
+
+  useEffect(() => {
+    axios.get('/api/schools')
+      .then(response => setSchools(response.data))
+      .catch(error => console.error('Error fetching schools:', error));
+  }, []);
+
   return (
     <SchoolsContainer>
       <h1>Schools</h1>
-      <SchoolCard>
-        <h2>School 1</h2>
-        <Link to="/schools/1">View Details</Link>
-      </SchoolCard>
-      <SchoolCard>
-        <h2>School 2</h2>
-        <Link to="/schools/2">View Details</Link>
-      </SchoolCard>
-      {/* Add more schools as needed */}
+      {schools.map((school: any) => (
+        <SchoolCard key={school.id}>
+          <h2>{school.name}</h2>
+          <p>Type: {school.type}</p>
+          <p>Product: {school.product}</p>
+          <p>County: {school.county}</p>
+          <Link to={`/schools/${school.id}`}>View Details</Link>
+        </SchoolCard>
+      ))}
     </SchoolsContainer>
   );
 };
