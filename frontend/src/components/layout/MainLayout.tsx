@@ -1,5 +1,5 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import { Link, Outlet } from 'react-router-dom';
 
 // Styles to my components
@@ -22,14 +22,72 @@ const Sidebar = styled.div`
   align-items: center;
 `;
 // links style
+// const SidebarLink = styled(Link)`
+//   align-items: center;
+//   align-content: center;
+//   align-self: center;
+//   color: white;
+//   text-decoration: none;
+//   margin-bottom: 15px;
+//   padding: 8px 16px;
+//   border: 1px solid transparent;
+//   background-color: black;
+// border-radius: 4px;
+
+
+//   &:hover {
+//     text-decoration: none;
+//   }
+// `;
+const pulse = keyframes`
+  0% {
+    box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.4), 0 0 0 0 rgba(128, 128, 128, 0.3);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(0, 0, 0, 0), 0 0 0 30px rgba(128, 128, 128, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(0, 0, 0, 0), 0 0 0 0 rgba(128, 128, 128, 0);
+  }
+`;
+
+
+// Create the styled link component with pulsating effect
 const SidebarLink = styled(Link)`
+  align-items: center;
+  align-content: center;
+  align-self: center;
   color: white;
   text-decoration: none;
-  margin-bottom: 10px;
+  margin-bottom: 15px;
+  padding: 8px 16px;
   border: 1px solid transparent;
+  background-color: black;
+  border-radius: 4px;
+  position: relative;
+  overflow: hidden;
+  z-index: 0;
 
   &:hover {
-    text-decoration: underline;
+    text-decoration: none;
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: var(--y, 50%);
+    left: var(--x, 50%);
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, rgba(0, 0, 0, 0.4) 10%, rgba(128, 128, 128, 0.3) 20%, rgba(0, 0, 0, 0) 70%);
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    animation: ${pulse} 1s infinite;
+    z-index: -1;
+  }
+
+  &:hover::after {
+    animation: ${pulse} 1s infinite;
   }
 `;
 
@@ -42,15 +100,29 @@ const MainContent = styled.div`
   height: 100%;
 `;
 
+const ButtonWithPulsateEffect: React.FC<{ to: string; children: React.ReactNode }> = ({ to, children }) => {
+  const handleMouseMove = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
+    const button = e.currentTarget;
+    const rect = button.getBoundingClientRect();
+    button.style.setProperty('--x', `${e.clientX - rect.left}px`);
+    button.style.setProperty('--y', `${e.clientY - rect.top}px`);
+  };
+
+  return (
+    <StyledLink to={to} onMouseMove={handleMouseMove}>
+      {children}
+    </StyledLink>
+  );
+};
+const MainLayout: React.FC = ()=> {
 
 
-const MainLayout: React.FC = () => {
   return (
      <Container>
       <Sidebar>
         <h2>Navigation</h2>
-        <SidebarLink to="/dashboard">Dashboard</SidebarLink>
-        <SidebarLink to="/schools">Schools</SidebarLink>
+         <ButtonWithPulsateEffect to="/dashboard">Dashboard</ButtonWithPulsateEffect>
+    <ButtonWithPulsateEffect to="/schools">Schools</ButtonWithPulsateEffect>
       </Sidebar>
       <MainContent>
         <Outlet />

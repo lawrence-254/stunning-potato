@@ -26,17 +26,24 @@ const Schools: React.FC = () => {
   }, []);
 
   return (
+
     <SchoolsContainer>
-      <h1>Schools</h1>
-      {schools.map((school: any) => (
-        <SchoolCard key={school.id}>
-          <h2>{school.name}</h2>
-          <p>Type: {school.type}</p>
-          <p>Product: {school.product}</p>
-          <p>County: {school.county}</p>
-          <Link to={`/schools/${school.id}`}>View Details</Link>
-        </SchoolCard>
-      ))}
+     {schools.length > 0 ? (
+        <>
+          <h1>Schools</h1>
+          {schools.map((school) => (
+            <SchoolCard key={school.id}>
+              <h2>{school.name}</h2>
+              <p>Type: {school.type}</p>
+              <p>Product: {school.product}</p>
+              <p>County: {school.county}</p>
+              <Link to={`/schools/${school.id}`}>View Details</Link>
+            </SchoolCard>
+          ))}
+        </>
+      ) : (
+        <p>No schools available</p>
+      )}
     </SchoolsContainer>
   );
 };
