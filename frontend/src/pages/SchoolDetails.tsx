@@ -104,13 +104,13 @@ const [collections, setCollections] = useState<any[]>([]);
 
 
 function updateCollectionStatus(collectionId: string, status: string) {
-    axios.put(`/api/collections/${collectionId}`, { status })
-        .then(response => {
-            setCollections(collections.map((collection: any) =>
-                collection.id === collectionId ? { ...collection, status } : collection
-            ));
-        })
-        .catch(error => console.error('Error updating collection status:', error));
+  axios.put(`http://localhost:6969/schools/${id}/collections/${collectionId}`, { status })
+    .then(() => {
+      setCollections(collections.map((collection: any) =>
+        collection.id === collectionId ? { ...collection, status } : collection
+      ));
+    })
+    .catch(error => console.error('Error updating collection status:', error));
 }
 };
 

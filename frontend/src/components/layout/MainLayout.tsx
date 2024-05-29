@@ -26,6 +26,7 @@ const SidebarLink = styled(Link)`
   color: white;
   text-decoration: none;
   margin-bottom: 10px;
+  border: 1px solid transparent;
 
   &:hover {
     text-decoration: underline;

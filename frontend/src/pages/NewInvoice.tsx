@@ -50,7 +50,7 @@ const NewInvoice: React.FC = () => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     axios.post(`http://localhost:6969/schools/${id}/invoices`, invoice)
-      .then(response => {
+      .then(() => {
         navigate(`/schools/${id}`);
       })
       .catch(error => console.error('Error creating invoice:', error));

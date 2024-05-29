@@ -3,16 +3,15 @@ import styled from 'styled-components';
 import { Pie, Bar } from 'react-chartjs-2';
 import 'chart.js/auto';
 import Modal from 'react-modal';
-/**
- * This module contains dashboard components
- * the mock data consumed is within the module and no external dependency is required
- */
+
+
+
 const DashboardContainer = styled.div`
   display: flex;
   flex-direction: column;
   gap: 20px;
-    padding: 20px;
-    width: 100%;
+  padding: 20px;
+  width: 100%;
 `;
 
 const CardsContainer = styled.div`
@@ -101,23 +100,38 @@ const DashboardModule: React.FC = () => {
 //   end of mock json data for this module
 
 // support utils
-  const [modalIsOpen, setModalIsOpen] = useState(false);
-  const [selectedInvoice, setSelectedInvoice] = useState(null);
+interface Invoice {
+  // Define the structure of your Invoice object here
+  id: number;
+  school: string;
+  amount: number;
+  dueDate: string;
+  // Add other properties as needed
+}
+
+const [selectedInvoice, setSelectedInvoice] = useState<Invoice | null>(null);
+const [modalIsOpen, setModalIsOpen] = useState<boolean>(false);
+
 const openModal = (invoice: Invoice) => {
-    setSelectedInvoice(invoice);
-    setModalIsOpen(true);
+  setSelectedInvoice(invoice);
+  setModalIsOpen(true);
 };
 
-  const closeModal = () => {
-    setModalIsOpen(false);
-    setSelectedInvoice(null);
-  };
+const closeModal = () => {
+  setModalIsOpen(false);
+  setSelectedInvoice(null);
+};
 
-  const handlePayment = () => {
-    // Implement payment collection logic here
+const handlePayment = () => {
+  // Implement payment collection logic here
+  if (selectedInvoice) {
     console.log(`Collecting payment for ${selectedInvoice.school}`);
+    // Call your payment collection function here
     closeModal();
-  };
+  } else {
+    console.error("No invoice selected for payment.");
+  }
+};
   //end of utils
 
   return (
@@ -187,7 +201,7 @@ const openModal = (invoice: Invoice) => {
               <p>{invoice.school}</p>
               <p>Amount: ${invoice.amount}</p>
               <p>Due Date: {invoice.dueDate}</p>
-              <button onClick={() => openModal(invoice)}>Collect Payment</button>
+              <button onClick={() => openModal({ ...invoice, id: 0 })}>Collect Payment</button>
             </InvoiceItem>
           ))}
         </InvoicesList>
@@ -199,12 +213,14 @@ const openModal = (invoice: Invoice) => {
       >
         <h2>Collect Payment</h2>
         <P>This modal is for demo purposes only, it does nothing to the web app. The functionality can be added with a proper and complex backend</P>
+
+
         {selectedInvoice && (
-            <>
-                <p>School: {selectedInvoice.school}</p>
-                <p>Amount: ${selectedInvoice.amount}</p>
-                <p>Due Date: {selectedInvoice.dueDate}</p>
-            </>
+          <>
+            <p>School: {selectedInvoice.school}</p>
+            <p>Amount: ${selectedInvoice.amount}</p>
+            <p>Due Date: {selectedInvoice.dueDate}</p>
+          </>
         )}
         <button onClick={handlePayment}>Confirm Payment</button>
         <button onClick={closeModal}>Cancel</button>
