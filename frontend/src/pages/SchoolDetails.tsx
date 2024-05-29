@@ -36,7 +36,7 @@ const SchoolDetails: React.FC = () => {
   const { id } = useParams<{ id: string }>();
   const [school, setSchool] = useState<any>(null);
   const [invoices, setInvoices] = useState([]);
-  const [collections, setCollections] = useState([]);
+const [collections, setCollections] = useState<any[]>([]);
 
   useEffect(() => {
     axios.get(`/api/schools/${id}`)
@@ -103,7 +103,6 @@ const SchoolDetails: React.FC = () => {
     </SchoolDetailsContainer>
   );
 
-const [collections, setCollections] = useState<any[]>([]);
 
 function updateCollectionStatus(collectionId: string, status: string) {
     axios.put(`/api/collections/${collectionId}`, { status })
