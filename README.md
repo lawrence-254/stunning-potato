@@ -42,20 +42,20 @@ cd frontend  && npm install
 
 ### - On the first terminal window run the following command to start the json server
 
-       ```bash
-       npx json-server --watch database/db.json --port 6969
-       ```
+```bash
+npx json-server --watch database/db.json --port 6969
+```
 
 ### - on the second window run the following command to start the app
 
-       ```bash
-       npm run dev
-       ```
+```bash
+ npm run dev
+```
 
 ### or
 
-       ```bash
-       npm start
-       ```
+```bash
+npm start
+```
 
 ### 6. Navigate to the port on the terminal window using internet browser to access the app.
