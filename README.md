@@ -14,44 +14,48 @@ develop a responsive sales agent dashboard that facilitates the management of sc
 
 ### Local Setup
 
-### 1. Clone the repository:
+### 1. Clone the repository:
 
-   ```bash
-   git clone https://github.com/lawrence-254/stunning-potato
-   ```
+```bash
+git clone https://github.com/lawrence-254/stunning-potato
+```
 
+### 2. Open the repository in the command line
 
-### 2. Open the repository in the command line
-
-   ```bash
-   cd stunning-potato
-   ```
+```bash
+cd stunning-potato
+```
 
 ### 3. Run npm install to install dependencies
-   ```bash
-   npm install
-   ```
+
+```bash
+npm install
+```
 
 ### 4. Navigate to frontend folder and run npm install
-   ```bash
-   cd frontend  && npm install
-   ```
+
+```bash
+cd frontend  && npm install
+```
 
 ### 5. Open two terminal windows from the frontend folder
-###       - On the first terminal window run the following command to start the json server
+
+### - On the first terminal window run the following command to start the json server
+
        ```bash
        npx json-server --watch database/db.json --port 6969
        ```
 
-###       - on the second window run the following command to start the app
+### - on the second window run the following command to start the app
+
        ```bash
        npm run dev
        ```
 
-###       or
+### or
+
        ```bash
        npm start
        ```
 
 ### 6. Navigate to the port on the terminal window using internet browser to access the app.
-
