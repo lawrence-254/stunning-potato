@@ -11,6 +11,7 @@ develop a responsive sales agent dashboard that facilitates the management of sc
 
 - Your computer should have Node.js installed if not, you can get node from the official node website.
   You should also have a package manager preferably npm, but yarn can also work
+- To use this application, you need to follow the steps on how to locally set it up
 
 ### Local Setup
 
