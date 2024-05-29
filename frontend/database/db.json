@@ -32,6 +32,39 @@
           "amount": 500
         }
       ]
+    },
+    {
+      "id": 2,
+      "name": "School B",
+      "type": "Secondary",
+      "product": "Not Zeraki Analytics",
+      "county": "Nairobi",
+      "registrationDate": "2023-01-15",
+      "contact": "contact@schoolb.com",
+      "balance": 1300,
+      "invoices": [
+        {
+          "id": 1,
+          "number": "INV001",
+          "item": "Zeraki Analytics item",
+          "creationDate": "2024-02-01",
+          "dueDate": "2024-03-01",
+          "amount": 3300,
+          "paidAmount": 2000,
+          "balance": 1300,
+          "status": "Pending"
+        }
+      ],
+      "collections": [
+        {
+          "id": 1,
+          "invoiceNumber": "INV001",
+          "number": "COL001",
+          "date": "2022-02-15",
+          "status": "Valid",
+          "amount": 1300
+        }
+      ]
     }
   ]
 }

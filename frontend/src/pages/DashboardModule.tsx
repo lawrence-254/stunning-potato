@@ -1,8 +1,12 @@
-import React from 'react';
+import React, {useState}from 'react';
 import styled from 'styled-components';
 import { Pie, Bar } from 'react-chartjs-2';
 import 'chart.js/auto';
-
+import Modal from 'react-modal';
+/**
+ * This module contains dashboard components
+ * the mock data consumed is within the module and no external dependency is required
+ */
 const DashboardContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -46,8 +50,13 @@ const InvoiceItem = styled.li`
   padding: 10px 0;
   border-bottom: 1px solid #eee;
 `;
-
+const P = styled.p`
+color:red;
+font-size:3.5rem;
+`;
+//end of styles
 const DashboardModule: React.FC = () => {
+// Mock json data for this module
   // Mock data for cards
   const collections = 100;
   const signups = {
@@ -89,6 +98,27 @@ const DashboardModule: React.FC = () => {
     { school: 'School B', amount: 1500, dueDate: '2023-06-05' },
     { school: 'School C', amount: 2000, dueDate: '2023-06-10' }
   ];
+//   end of mock json data for this module
+
+// support utils
+  const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [selectedInvoice, setSelectedInvoice] = useState(null);
+const openModal = (invoice: Invoice) => {
+    setSelectedInvoice(invoice);
+    setModalIsOpen(true);
+};
+
+  const closeModal = () => {
+    setModalIsOpen(false);
+    setSelectedInvoice(null);
+  };
+
+  const handlePayment = () => {
+    // Implement payment collection logic here
+    console.log(`Collecting payment for ${selectedInvoice.school}`);
+    closeModal();
+  };
+  //end of utils
 
   return (
     <DashboardContainer>
@@ -157,11 +187,28 @@ const DashboardModule: React.FC = () => {
               <p>{invoice.school}</p>
               <p>Amount: ${invoice.amount}</p>
               <p>Due Date: {invoice.dueDate}</p>
-              <button>Collect Payment</button>
+              <button onClick={() => openModal(invoice)}>Collect Payment</button>
             </InvoiceItem>
           ))}
         </InvoicesList>
       </UpcomingInvoicesContainer>
+    <Modal
+        isOpen={modalIsOpen}
+        onRequestClose={closeModal}
+        contentLabel="Collect Payment Modal"
+      >
+        <h2>Collect Payment</h2>
+        <P>This modal is for demo purposes only, it does nothing to the web app. The functionality can be added with a proper and complex backend</P>
+        {selectedInvoice && (
+            <>
+                <p>School: {selectedInvoice.school}</p>
+                <p>Amount: ${selectedInvoice.amount}</p>
+                <p>Due Date: {selectedInvoice.dueDate}</p>
+            </>
+        )}
+        <button onClick={handlePayment}>Confirm Payment</button>
+        <button onClick={closeModal}>Cancel</button>
+      </Modal>
     </DashboardContainer>
   );
 };
