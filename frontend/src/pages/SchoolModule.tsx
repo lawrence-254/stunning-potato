@@ -20,7 +20,7 @@ const Schools: React.FC = () => {
   const [schools, setSchools] = useState([]);
 
   useEffect(() => {
-    axios.get('/api/schools')
+    axios.get('http://localhost:6969/schools')
       .then(response => setSchools(response.data))
       .catch(error => console.error('Error fetching schools:', error));
   }, []);

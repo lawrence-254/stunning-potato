@@ -49,7 +49,7 @@ const NewInvoice: React.FC = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    axios.post(`/api/schools/${id}/invoices`, invoice)
+    axios.post(`http://localhost:6969/schools/${id}/invoices`, invoice)
       .then(response => {
         navigate(`/schools/${id}`);
       })

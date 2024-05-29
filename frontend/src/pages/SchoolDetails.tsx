@@ -39,15 +39,15 @@ const SchoolDetails: React.FC = () => {
 const [collections, setCollections] = useState<any[]>([]);
 
   useEffect(() => {
-    axios.get(`/api/schools/${id}`)
+    axios.get(`http://localhost:6969/schools/${id}`)
       .then(response => setSchool(response.data))
       .catch(error => console.error('Error fetching school details:', error));
 
-    axios.get(`/api/schools/${id}/invoices`)
+    axios.get(`http://localhost:6969/schools/${id}/invoices`)
       .then(response => setInvoices(response.data))
       .catch(error => console.error('Error fetching invoices:', error));
 
-    axios.get(`/api/schools/${id}/collections`)
+    axios.get(`http://localhost:6969/schools/${id}/collections`)
       .then(response => setCollections(response.data))
       .catch(error => console.error('Error fetching collections:', error));
   }, [id]);

@@ -1,21 +1,27 @@
-// src/components/layout/MainLayout.js
-import React, { ReactNode } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import { Link, Outlet } from 'react-router-dom';
 
 // Styled Components
-// main container area
+// Main container area
 const Container = styled.div`
   display: flex;
   height: 100vh;
 `;
-//left sidebar area
+
+// Left sidebar area
 const Sidebar = styled.div`
   width: 250px;
   background-color: #333;
   color: white;
   padding: 20px;
+  position: fixed;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `;
+
 const SidebarLink = styled(Link)`
   color: white;
   text-decoration: none;
@@ -25,20 +31,17 @@ const SidebarLink = styled(Link)`
     text-decoration: underline;
   }
 `;
-//main area components
+
+// Main content area
 const MainContent = styled.div`
+  margin-left: 250px; /* Offset the width of the fixed sidebar */
   flex-grow: 1;
-  color: black;
   background-color: #f0f0f0;
   padding: 20px;
-  width: calc(100% - 250px);
+  height: 100%;
 `;
 
-//props for the Layout component
-// interface LayoutProps {
-//   children: ReactNode;
-// }
-// const MainLayout: React.FC<LayoutProps> = ({ children }) => {
+
 
 const MainLayout: React.FC = () => {
   return (
@@ -52,16 +55,7 @@ const MainLayout: React.FC = () => {
         <Outlet />
       </MainContent>
     </Container>
-    //  <Container>
-    //   <Sidebar>
-    //     <h2>Navigation</h2>
-    //     <SidebarLink to="/dashboard">Dashboard</SidebarLink>
-    //     <SidebarLink to="/schools">Schools</SidebarLink>
-    //   </Sidebar>
-    //   <MainContent>
-    //     {children}
-    //   </MainContent>
-    // </Container>
+
   )
 }
 
