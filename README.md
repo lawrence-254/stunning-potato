@@ -5,6 +5,12 @@
 This project is a test designed by zeraki, the objective of this project is to
 develop a responsive sales agent dashboard that facilitates the management of school accounts, invoicing, and collections, including data visualization for targets and sign-ups.
 
+## Tech Stack
+-React js
+-JSON
+-Typescript
+-Javascript
+
 ## Setup Instructions
 
 ### Prerequisites
