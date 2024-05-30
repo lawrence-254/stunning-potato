@@ -15,6 +15,10 @@ const SchoolCard = styled.div`
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   margin-bottom: 10px;
 `;
+const P = styled.p`
+color:red;
+font-size:1.5rem;
+`;
 
 const Schools: React.FC = () => {
   const [schools, setSchools] = useState([]);
@@ -28,10 +32,10 @@ const Schools: React.FC = () => {
   return (
 
     <SchoolsContainer>
-     {schools.length > 0 ? (
+   {schools.length > 0 ? (
         <>
           <h1>Schools</h1>
-          {schools.map((school) => (
+          {schools.map((school: { id: number, name: string, type: string, product: string, county: string }) => (
             <SchoolCard key={school.id}>
               <h2>{school.name}</h2>
               <p>Type: {school.type}</p>
@@ -42,7 +46,7 @@ const Schools: React.FC = () => {
           ))}
         </>
       ) : (
-        <p>No schools available</p>
+        <P>No schools available, The mock server is not running or not configured</P>
       )}
     </SchoolsContainer>
   );
