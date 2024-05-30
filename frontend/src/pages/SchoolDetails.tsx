@@ -36,7 +36,7 @@ const SchoolDetails: React.FC = () => {
   const [school, setSchool] = useState<any>(null);
   const [invoices, setInvoices] = useState([]);
 const [collections, setCollections] = useState<any[]>([]);
-
+// use effect to fetch the data from the json server with trigger being id that is passed in the uri
   useEffect(() => {
     axios.get(`http://localhost:6969/schools/${id}`)
       .then(response => setSchool(response.data))
